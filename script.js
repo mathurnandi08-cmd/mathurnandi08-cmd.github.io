@@ -14,15 +14,21 @@ function type(){
 }
 type();
 
-// Scroll animation
 const faders = document.querySelectorAll(".fade");
-window.addEventListener("scroll", () => {
+
+const appearOnScroll = () => {
   faders.forEach(el => {
-    if(el.getBoundingClientRect().top < window.innerHeight - 100){
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 50) {
       el.classList.add("show");
     }
   });
-});
+};
+
+// पेज लोड होते ही और स्क्रॉल करने पर, दोनों समय चेक करेगा
+window.addEventListener("load", appearOnScroll);
+window.addEventListener("scroll", appearOnScroll);
+
 
 // Particle background
 const c = document.getElementById("particles");
